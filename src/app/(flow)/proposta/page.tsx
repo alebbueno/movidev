@@ -86,29 +86,34 @@ export default function PropostaPage() {
   };
 
   return (
-    <div className="min-h-screen bg-zinc-950 flex flex-col font-sans selection:bg-blue-500/30">
+    <div className="min-h-screen bg-black flex flex-col font-sans selection:bg-blue-500/30 relative overflow-hidden">
       
-      {/* Header */}
-      <header className="sticky top-0 z-50 w-full border-b border-zinc-800 bg-zinc-950/80 backdrop-blur-md">
-        <div className="max-w-7xl mx-auto px-6 h-16 flex justify-between items-center">
-          <div className="font-bold text-lg text-white flex items-center gap-2">
-              <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center text-white font-bold">M</div>
-              <span>movidev</span>
-          </div>
-          {leadId && <span className="text-xs text-zinc-600 font-mono">ID: {leadId.slice(0,8)}</span>}
-        </div>
-      </header>
+      {/* Background Liquid Elements */}
+      <div className="fixed inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] bg-blue-600/20 rounded-full blur-[120px] animate-blob mix-blend-screen" />
+        <div className="absolute top-[20%] right-[-10%] w-[40vw] h-[40vw] bg-purple-600/20 rounded-full blur-[120px] animate-blob animation-delay-2000 mix-blend-screen" />
+        <div className="absolute bottom-[-10%] left-[20%] w-[45vw] h-[45vw] bg-indigo-600/20 rounded-full blur-[120px] animate-blob animation-delay-4000 mix-blend-screen" />
+      </div>
 
       {/* Main Content */}
-      <main className="flex-1 flex flex-col justify-center py-10 relative">
+      <main className="flex-1 flex flex-col justify-center py-10 relative z-10">
         
         {/* Loading Overlay (Transição entre passos) */}
         {isLoading && (
-            <div className="absolute inset-0 z-50 bg-zinc-950/80 backdrop-blur-sm flex flex-col items-center justify-center animate-in fade-in">
+            <div className="absolute inset-0 z-50 bg-black/80 backdrop-blur-sm flex flex-col items-center justify-center animate-in fade-in">
                 <Loader2 className="w-12 h-12 text-blue-500 animate-spin mb-4" />
                 <h3 className="text-xl font-bold text-white">Processando...</h3>
-                <p className="text-zinc-400">Nossa IA está estruturando a próxima etapa.</p>
+                <p className="text-white/60">Nossa IA está estruturando a próxima etapa.</p>
             </div>
+        )}
+
+        {/* Lead ID Badge */}
+        {leadId && (
+          <div className="absolute top-4 right-6 z-20">
+            <div className="glass px-4 py-2 rounded-full">
+              <span className="text-xs text-white/60 font-mono">ID: {leadId.slice(0,8)}</span>
+            </div>
+          </div>
         )}
 
         <div className="relative z-10 w-full">

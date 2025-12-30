@@ -38,13 +38,15 @@ export default function StepBudget({ onNext, onBack }: StepBudgetProps) {
       <div className="mb-10">
         <div className="flex justify-between items-end mb-2">
             <div>
-                <span className="text-blue-500 font-medium text-sm tracking-wider uppercase">Passo 4 de 5</span>
-                <h1 className="text-3xl md:text-4xl font-bold text-white mt-1">Objetivo & Orçamento</h1>
+                <span className="text-blue-400 font-medium text-sm tracking-wider uppercase">Passo 4 de 5</span>
+                <h1 className="text-3xl md:text-4xl font-bold text-white mt-2 tracking-tight">
+                  Objetivo & <span className="text-gradient">Orçamento</span>
+                </h1>
             </div>
-            <span className="text-zinc-400 text-sm font-medium">80% Concluído</span>
+            <span className="text-white/80 text-sm font-medium">80%</span>
         </div>
-        <Progress value={80} className="h-2 bg-zinc-800 mb-6" indicatorClassName="bg-gradient-to-r from-blue-600 to-purple-600" />
-        <p className="text-zinc-400 text-lg max-w-2xl">
+        <Progress value={80} className="h-2 bg-white/5 mb-6" indicatorClassName="bg-blue-500" />
+        <p className="text-white/60 text-lg max-w-2xl">
              Defina o escopo do seu projeto. Essas informações nos ajudam a dimensionar a equipe e a tecnologia ideal.
         </p>
       </div>

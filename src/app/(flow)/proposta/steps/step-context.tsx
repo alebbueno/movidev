@@ -57,16 +57,18 @@ export default function StepContext({ onNext }: StepContextProps) {
     <div className="w-full max-w-5xl mx-auto px-4 py-8 animate-in fade-in slide-in-from-left-4 duration-500">
       
       {/* Header */}
-      <div className="mb-8 space-y-4">
+      <div className="mb-12 space-y-4">
         <div className="flex justify-between items-end mb-2">
           <div>
-            <span className="text-blue-500 font-medium text-sm tracking-wider">PASSO 1 DE 4</span>
-            <h1 className="text-3xl font-bold text-white mt-1">Contexto do Negócio</h1>
+            <span className="text-blue-400 font-medium text-sm tracking-wider uppercase">PASSO 1 DE 4</span>
+            <h1 className="text-4xl md:text-5xl font-bold text-white mt-2 tracking-tight">
+              Contexto do <span className="text-gradient">Negócio</span>
+            </h1>
           </div>
-          <span className="text-xl font-bold text-white">25%</span>
+          <span className="text-2xl font-bold text-white/80">25%</span>
         </div>
-        <Progress value={25} className="h-2 bg-zinc-800" indicatorClassName="bg-blue-600" />
-        <p className="text-zinc-400">
+        <Progress value={25} className="h-2 bg-white/5" indicatorClassName="bg-blue-500" />
+        <p className="text-white/60 text-lg">
             Essas informações calibram nossa IA para fazer as perguntas técnicas corretas nas próximas etapas.
         </p>
       </div>
@@ -75,8 +77,8 @@ export default function StepContext({ onNext }: StepContextProps) {
         
         {/* 1. SEU PAPEL (Novo: Define o tom da IA) */}
         <section className="space-y-4">
-             <h2 className="text-lg font-medium text-white flex items-center gap-2">
-                <span className="bg-zinc-800 w-6 h-6 rounded-full flex items-center justify-center text-xs text-zinc-400">1</span>
+             <h2 className="text-xl font-semibold text-white flex items-center gap-3 mb-6">
+                <span className="glass w-8 h-8 rounded-full flex items-center justify-center text-sm text-white font-bold">1</span>
                 Qual seu papel no projeto?
             </h2>
             <div className="flex flex-wrap gap-3">
@@ -90,10 +92,10 @@ export default function StepContext({ onNext }: StepContextProps) {
                         key={role.id}
                         onClick={() => setUserRole(role.id as UserRole)}
                         className={cn(
-                            "flex items-center gap-2 px-5 py-3 rounded-full border transition-all text-sm font-medium",
+                            "flex items-center gap-2 px-6 py-3 rounded-full border transition-all text-sm font-medium",
                             userRole === role.id
-                                ? "bg-blue-600 border-blue-600 text-white shadow-lg shadow-blue-900/40"
-                                : "bg-zinc-900/50 border-zinc-800 text-zinc-400 hover:bg-zinc-800 hover:text-white"
+                                ? "bg-white text-black border-white shadow-[0_0_40px_-10px_rgba(255,255,255,0.3)] hover:scale-105"
+                                : "glass border-white/10 text-white/70 hover:bg-white/10 hover:text-white hover:border-white/20"
                         )}
                     >
                         {role.icon} {role.label}
@@ -104,8 +106,8 @@ export default function StepContext({ onNext }: StepContextProps) {
 
         {/* 2. TIPO DE EMPRESA */}
         <section className="space-y-4">
-          <h2 className="text-lg font-medium text-white flex items-center gap-2">
-            <span className="bg-zinc-800 w-6 h-6 rounded-full flex items-center justify-center text-xs text-zinc-400">2</span>
+          <h2 className="text-xl font-semibold text-white flex items-center gap-3 mb-6">
+            <span className="glass w-8 h-8 rounded-full flex items-center justify-center text-sm text-white font-bold">2</span>
             Qual o perfil da empresa?
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -142,72 +144,100 @@ export default function StepContext({ onNext }: StepContextProps) {
 
         {/* 3. ESTÁGIO DO PROJETO (Novo: Define a stack sugerida pela IA) */}
         <section className="space-y-4">
-          <h2 className="text-lg font-medium text-white flex items-center gap-2">
-            <span className="bg-zinc-800 w-6 h-6 rounded-full flex items-center justify-center text-xs text-zinc-400">3</span>
+          <h2 className="text-xl font-semibold text-white flex items-center gap-3 mb-6">
+            <span className="glass w-8 h-8 rounded-full flex items-center justify-center text-sm text-white font-bold">3</span>
             Em que momento o projeto está?
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
              <div 
                 onClick={() => setProjectStage("ideia")}
                 className={cn(
-                    "cursor-pointer p-4 rounded-xl border flex items-center gap-4 transition-all",
-                    projectStage === "ideia" ? "bg-blue-900/20 border-blue-500" : "bg-zinc-900/30 border-zinc-800 hover:border-zinc-700"
+                    "cursor-pointer p-5 rounded-2xl border flex items-center gap-4 transition-all group",
+                    projectStage === "ideia" 
+                        ? "glass border-blue-500/50 bg-blue-500/10 shadow-[0_0_30px_rgba(59,130,246,0.2)]" 
+                        : "glass border-white/10 hover:border-white/20 hover:bg-white/5"
                 )}
              >
-                <div className={cn("p-2 rounded-lg", projectStage === "ideia" ? "bg-blue-500 text-white" : "bg-zinc-800 text-zinc-400")}>
+                <div className={cn(
+                    "p-3 rounded-xl transition-all",
+                    projectStage === "ideia" 
+                        ? "bg-blue-500 text-white" 
+                        : "bg-white/5 text-white/60 group-hover:bg-white/10 group-hover:text-white"
+                )}>
                     <Lightbulb className="w-5 h-5" />
                 </div>
                 <div>
-                    <h3 className="text-white font-medium">Apenas Ideia / Conceito</h3>
-                    <p className="text-zinc-500 text-xs">Preciso validar viabilidade e criar MVP.</p>
+                    <h3 className="text-white font-semibold mb-1">Apenas Ideia / Conceito</h3>
+                    <p className="text-white/50 text-sm">Preciso validar viabilidade e criar MVP.</p>
                 </div>
              </div>
 
              <div 
                 onClick={() => setProjectStage("mvp")}
                 className={cn(
-                    "cursor-pointer p-4 rounded-xl border flex items-center gap-4 transition-all",
-                    projectStage === "mvp" ? "bg-blue-900/20 border-blue-500" : "bg-zinc-900/30 border-zinc-800 hover:border-zinc-700"
+                    "cursor-pointer p-5 rounded-2xl border flex items-center gap-4 transition-all group",
+                    projectStage === "mvp" 
+                        ? "glass border-blue-500/50 bg-blue-500/10 shadow-[0_0_30px_rgba(59,130,246,0.2)]" 
+                        : "glass border-white/10 hover:border-white/20 hover:bg-white/5"
                 )}
              >
-                <div className={cn("p-2 rounded-lg", projectStage === "mvp" ? "bg-blue-500 text-white" : "bg-zinc-800 text-zinc-400")}>
+                <div className={cn(
+                    "p-3 rounded-xl transition-all",
+                    projectStage === "mvp" 
+                        ? "bg-blue-500 text-white" 
+                        : "bg-white/5 text-white/60 group-hover:bg-white/10 group-hover:text-white"
+                )}>
                     <Hammer className="w-5 h-5" />
                 </div>
                 <div>
-                    <h3 className="text-white font-medium">Produto em Desenvolvimento</h3>
-                    <p className="text-zinc-500 text-xs">Já iniciei, mas preciso acelerar ou corrigir.</p>
+                    <h3 className="text-white font-semibold mb-1">Produto em Desenvolvimento</h3>
+                    <p className="text-white/50 text-sm">Já iniciei, mas preciso acelerar ou corrigir.</p>
                 </div>
              </div>
 
              <div 
                 onClick={() => setProjectStage("escala")}
                 className={cn(
-                    "cursor-pointer p-4 rounded-xl border flex items-center gap-4 transition-all",
-                    projectStage === "escala" ? "bg-blue-900/20 border-blue-500" : "bg-zinc-900/30 border-zinc-800 hover:border-zinc-700"
+                    "cursor-pointer p-5 rounded-2xl border flex items-center gap-4 transition-all group",
+                    projectStage === "escala" 
+                        ? "glass border-blue-500/50 bg-blue-500/10 shadow-[0_0_30px_rgba(59,130,246,0.2)]" 
+                        : "glass border-white/10 hover:border-white/20 hover:bg-white/5"
                 )}
              >
-                <div className={cn("p-2 rounded-lg", projectStage === "escala" ? "bg-blue-500 text-white" : "bg-zinc-800 text-zinc-400")}>
+                <div className={cn(
+                    "p-3 rounded-xl transition-all",
+                    projectStage === "escala" 
+                        ? "bg-blue-500 text-white" 
+                        : "bg-white/5 text-white/60 group-hover:bg-white/10 group-hover:text-white"
+                )}>
                     <TrendingUp className="w-5 h-5" />
                 </div>
                 <div>
-                    <h3 className="text-white font-medium">Produto Rodando / Escala</h3>
-                    <p className="text-zinc-500 text-xs">Preciso de novas features ou performance.</p>
+                    <h3 className="text-white font-semibold mb-1">Produto Rodando / Escala</h3>
+                    <p className="text-white/50 text-sm">Preciso de novas features ou performance.</p>
                 </div>
              </div>
 
              <div 
                 onClick={() => setProjectStage("legado")}
                 className={cn(
-                    "cursor-pointer p-4 rounded-xl border flex items-center gap-4 transition-all",
-                    projectStage === "legado" ? "bg-blue-900/20 border-blue-500" : "bg-zinc-900/30 border-zinc-800 hover:border-zinc-700"
+                    "cursor-pointer p-5 rounded-2xl border flex items-center gap-4 transition-all group",
+                    projectStage === "legado" 
+                        ? "glass border-blue-500/50 bg-blue-500/10 shadow-[0_0_30px_rgba(59,130,246,0.2)]" 
+                        : "glass border-white/10 hover:border-white/20 hover:bg-white/5"
                 )}
              >
-                <div className={cn("p-2 rounded-lg", projectStage === "legado" ? "bg-blue-500 text-white" : "bg-zinc-800 text-zinc-400")}>
+                <div className={cn(
+                    "p-3 rounded-xl transition-all",
+                    projectStage === "legado" 
+                        ? "bg-blue-500 text-white" 
+                        : "bg-white/5 text-white/60 group-hover:bg-white/10 group-hover:text-white"
+                )}>
                     <RefreshCw className="w-5 h-5" />
                 </div>
                 <div>
-                    <h3 className="text-white font-medium">Modernização de Legado</h3>
-                    <p className="text-zinc-500 text-xs">Refazer sistema antigo com tecnologias novas.</p>
+                    <h3 className="text-white font-semibold mb-1">Modernização de Legado</h3>
+                    <p className="text-white/50 text-sm">Refazer sistema antigo com tecnologias novas.</p>
                 </div>
              </div>
           </div>
@@ -215,8 +245,8 @@ export default function StepContext({ onNext }: StepContextProps) {
 
         {/* 4. SEGMENTO (Com Input Dinâmico) */}
         <section className="space-y-4">
-          <h2 className="text-lg font-medium text-white flex items-center gap-2">
-            <span className="bg-zinc-800 w-6 h-6 rounded-full flex items-center justify-center text-xs text-zinc-400">4</span>
+          <h2 className="text-xl font-semibold text-white flex items-center gap-3 mb-6">
+            <span className="glass w-8 h-8 rounded-full flex items-center justify-center text-sm text-white font-bold">4</span>
             Qual o seu segmento de atuação?
           </h2>
           <div className="flex flex-wrap gap-3 items-center">
@@ -225,10 +255,10 @@ export default function StepContext({ onNext }: StepContextProps) {
                 key={item}
                 onClick={() => { setSegment(item); setIsCustomSegment(false); }}
                 className={cn(
-                  "px-6 py-4 rounded-2xl border transition-all text-sm font-medium capitalize min-w-25",
+                  "px-6 py-4 rounded-full border transition-all text-sm font-medium capitalize",
                   !isCustomSegment && segment === item
-                    ? "bg-zinc-900 border-blue-500 text-white shadow-[0_0_15px_rgba(59,130,246,0.3)]"
-                    : "bg-zinc-900/50 border-zinc-800 text-zinc-400 hover:border-zinc-700 hover:text-zinc-300"
+                    ? "bg-white text-black border-white shadow-[0_0_40px_-10px_rgba(255,255,255,0.3)] hover:scale-105"
+                    : "glass border-white/10 text-white/70 hover:bg-white/10 hover:text-white hover:border-white/20"
                 )}
               >
                 {item}
@@ -239,7 +269,7 @@ export default function StepContext({ onNext }: StepContextProps) {
             {!isCustomSegment ? (
                 <button
                     onClick={() => { setIsCustomSegment(true); setCustomSegment(""); }}
-                    className="px-6 py-4 rounded-2xl border border-zinc-800 bg-zinc-900/50 text-zinc-400 hover:border-zinc-700 hover:text-white transition-all text-sm font-medium min-w-25"
+                    className="px-6 py-4 rounded-full glass border-white/10 text-white/70 hover:bg-white/10 hover:text-white hover:border-white/20 transition-all text-sm font-medium"
                 >
                     Outro...
                 </button>
@@ -248,13 +278,13 @@ export default function StepContext({ onNext }: StepContextProps) {
                     <Input 
                         autoFocus
                         placeholder="Ex: Mineração, Advocacia, etc..."
-                        className="bg-zinc-900 border-blue-500 text-white h-13.5 rounded-2xl focus-visible:ring-blue-500/50"
+                        className="glass border-white/20 text-white placeholder:text-white/40 h-12 rounded-full focus-visible:ring-blue-500/50 focus-visible:border-blue-500"
                         value={customSegment}
                         onChange={(e) => setCustomSegment(e.target.value)}
                     />
                     <button 
                         onClick={() => setIsCustomSegment(false)}
-                        className="text-zinc-500 hover:text-white px-2"
+                        className="text-white/60 hover:text-white px-2 transition-colors"
                     >
                         X
                     </button>
@@ -266,8 +296,8 @@ export default function StepContext({ onNext }: StepContextProps) {
       </div>
 
       {/* Footer Navigation */}
-      <div className="mt-16 pt-6 border-t border-zinc-800 flex justify-between items-center">
-        <Button variant="ghost" className="text-zinc-400 hover:text-white hover:bg-transparent pl-0 gap-2 opacity-0 cursor-default">
+      <div className="mt-16 pt-8 border-t border-white/10 flex justify-between items-center">
+        <Button variant="ghost" className="text-white/40 hover:text-white hover:bg-transparent pl-0 gap-2 opacity-0 cursor-default">
           <ArrowLeft className="w-4 h-4" /> Voltar
         </Button>
         
@@ -275,10 +305,10 @@ export default function StepContext({ onNext }: StepContextProps) {
           onClick={handleNext}
           disabled={!isValid}
           className={cn(
-            "px-8 py-6 text-lg rounded-full gap-2 transition-all",
+            "px-10 py-6 text-lg rounded-full gap-2 transition-all font-bold",
             isValid 
-                ? "bg-blue-600 hover:bg-blue-700 text-white shadow-lg shadow-blue-900/20 hover:scale-105"
-                : "bg-zinc-800 text-zinc-500 cursor-not-allowed"
+                ? "bg-white text-black shadow-[0_0_40px_-10px_rgba(255,255,255,0.3)] hover:scale-105"
+                : "glass border-white/10 text-white/30 cursor-not-allowed"
           )}
         >
           Próximo: Diagnóstico IA <ArrowRight className="w-5 h-5" />
