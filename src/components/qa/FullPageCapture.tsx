@@ -7,7 +7,7 @@ import { Camera, ArrowLeft, Loader2, Copy, Check } from 'lucide-react'
 import { AnnotationEditor } from './AnnotationEditor'
 import { uploadScreenshot, createVisualQAItem } from '@/lib/services/visual-qa'
 import { createClient } from '@/lib/supabase/client'
-import html2canvas from 'html2canvas'
+// import html2canvas from 'html2canvas'
 
 interface FullPageCaptureProps {
     projectId: string
@@ -24,59 +24,59 @@ export function FullPageCapture({ projectId, siteUrl, categoryId }: FullPageCapt
     const supabase = createClient()
     const pageContentRef = useRef<HTMLDivElement>(null)
 
-    const handleCaptureLocalUI = async () => {
-        setCapturing(true)
-        setImageBlob(null)
+    // const handleCaptureLocalUI = async () => {
+    //     setCapturing(true)
+    //     setImageBlob(null)
 
-        try {
-            console.log('📸 Capturando componente local (página + site)...')
+    //     try {
+    //         console.log('📸 Capturando componente local (página + site)...')
 
-            // Captura o componente inteiro que mostra a página
-            const element = pageContentRef.current
-            if (!element) {
-                throw new Error('Elemento da página não encontrado')
-            }
+    //         // Captura o componente inteiro que mostra a página
+    //         const element = pageContentRef.current
+    //         if (!element) {
+    //             throw new Error('Elemento da página não encontrado')
+    //         }
 
-            console.log('📏 Dimensões do componente:', {
-                width: element.offsetWidth,
-                height: element.offsetHeight
-            })
+    //         console.log('📏 Dimensões do componente:', {
+    //             width: element.offsetWidth,
+    //             height: element.offsetHeight
+    //         })
 
-            // Usa html2canvas para capturar o componente (inclui o iframe visualizado)
-            const canvas = await html2canvas(element, {
-                allowTaint: true,
-                useCORS: true,
-                backgroundColor: '#ffffff',
-                scale: window.devicePixelRatio || 2,
-                logging: false
-            })
+    //         // // Usa html2canvas para capturar o componente (inclui o iframe visualizado)
+    //         // const canvas = await html2canvas(element, {
+    //         //     allowTaint: true,
+    //         //     useCORS: true,
+    //         //     backgroundColor: '#ffffff',
+    //         //     scale: window.devicePixelRatio || 2,
+    //         //     logging: false
+    //         // })
 
-            console.log('✅ Canvas gerado com sucesso')
+    //         // console.log('✅ Canvas gerado com sucesso')
 
-            // Converte canvas para blob
-            canvas.toBlob((blob) => {
-                if (!blob) {
-                    throw new Error('Erro ao gerar blob')
-                }
+    //         // // Converte canvas para blob
+    //         // canvas.toBlob((blob) => {
+    //         //     if (!blob) {
+    //         //         throw new Error('Erro ao gerar blob')
+    //         //     }
 
-                console.log(`📦 Blob gerado: ${blob.size} bytes`)
+    //         //     console.log(`📦 Blob gerado: ${blob.size} bytes`)
 
-                if (blob.size === 0) {
-                    throw new Error('Imagem capturada está vazia')
-                }
+    //         //     if (blob.size === 0) {
+    //         //         throw new Error('Imagem capturada está vazia')
+    //         //     }
 
-                setImageBlob(blob)
-                setEditorOpen(true)
-                setCapturing(false)
-            }, 'image/png')
+    //         //     setImageBlob(blob)
+    //         //     setEditorOpen(true)
+    //         //     setCapturing(false)
+    //         // }, 'image/png')
 
-        } catch (err) {
-            console.error('❌ Erro na captura:', err)
-            const message = err instanceof Error ? err.message : 'Erro desconhecido ao capturar página'
-            alert(`Erro ao capturar: ${message}`)
-            setCapturing(false)
-        }
-    }
+    //     } catch (err) {
+    //         console.error('❌ Erro na captura:', err)
+    //         const message = err instanceof Error ? err.message : 'Erro desconhecido ao capturar página'
+    //         alert(`Erro ao capturar: ${message}`)
+    //         setCapturing(false)
+    //     }
+    // }
 
     const handleCapture = async () => {
         setCapturing(true)
@@ -220,7 +220,7 @@ export function FullPageCapture({ projectId, siteUrl, categoryId }: FullPageCapt
                         )}
                     </Button>
 
-                    <Button 
+                    {/* <Button 
                         onClick={handleCaptureLocalUI} 
                         disabled={capturing} 
                         variant="outline"
@@ -237,7 +237,7 @@ export function FullPageCapture({ projectId, siteUrl, categoryId }: FullPageCapt
                                 Screenshot Local
                             </>
                         )}
-                    </Button>
+                    </Button> */}
                 </div>
             </div>
 
