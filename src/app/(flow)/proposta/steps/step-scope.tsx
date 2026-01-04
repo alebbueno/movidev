@@ -41,7 +41,11 @@ export default function StepScope({ onNext, onBack }: StepScopeProps) {
           <span className="text-xl font-bold text-white">50% Completo</span>
         </div>
         {/* Progress Bar com gradiente sutil simulado via CSS classes */}
-        <Progress value={50} className="h-2 bg-zinc-800" indicatorClassName="bg-gradient-to-r from-blue-600 to-indigo-500" />
+        <Progress
+          value={50}
+          className="h-2 bg-zinc-800 [&>div]:bg-gradient-to-r [&>div]:from-blue-600 [&>div]:to-indigo-500"
+        />
+
         
         <p className="text-zinc-400 max-w-2xl">
           Selecione uma ou mais áreas onde podemos ajudar sua empresa a inovar e otimizar resultados.

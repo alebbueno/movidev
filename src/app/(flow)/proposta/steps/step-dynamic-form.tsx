@@ -46,7 +46,11 @@ export default function StepDynamicForm({ formData, onSuccess }: StepDynamicForm
             </div>
             <span className="text-xl font-bold text-white">50%</span>
         </div>
-        <Progress value={50} className="h-2 bg-zinc-800 mb-6" indicatorClassName="bg-blue-600" />
+        <Progress
+        value={50}
+        className="h-2 bg-zinc-800 mb-6 [&>div]:bg-blue-600"
+        />
+
         <p className="text-zinc-400 text-lg max-w-2xl">
             {formData?.description}
         </p>

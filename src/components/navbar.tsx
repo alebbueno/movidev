@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 "use client"
 
 import { useState, useEffect } from "react"
@@ -20,6 +21,7 @@ export function Navbar() {
     { name: "Serviços", href: "#services" },
     { name: "Sobre", href: "#about" },
     { name: "Contato", href: "#contact" },
+    { name: "Blog", href: "/blog" },
   ]
 
   return (

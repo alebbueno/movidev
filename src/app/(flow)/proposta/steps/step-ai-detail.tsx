@@ -191,7 +191,10 @@ export default function StepAiDetail({ onNext, onBack }: StepAiDetailProps) {
           </div>
           <span className="text-sm font-medium text-zinc-500">Dinâmico</span>
         </div>
-        <Progress value={33 + (history.length * 10)} className="h-1.5 bg-zinc-800" indicatorClassName="bg-gradient-to-r from-blue-600 to-indigo-500" />
+        <Progress
+          value={33 + history.length * 10}
+          className="h-1.5 bg-zinc-800 [&>div]:bg-linear-to-r [&>div]:from-blue-600 [&>div]:to-indigo-500"
+        />
       </div>
 
       {/* Card da Pergunta */}

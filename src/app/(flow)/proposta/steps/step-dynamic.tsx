@@ -81,7 +81,11 @@ export default function StepDynamic({ context, onConclusion }: StepDynamicProps)
             <span className="text-blue-500 font-medium text-sm tracking-wider uppercase">Passo 2 de 4</span>
             <span className="text-zinc-400 text-sm">50% Completo</span>
         </div>
-        <Progress value={50} className="h-2 bg-zinc-800 mb-6" indicatorClassName="bg-gradient-to-r from-blue-600 to-purple-600" />
+        <Progress
+          value={50}
+          className="h-2 bg-zinc-800 mb-6 [&>div]:bg-linear-to-r [&>div]:from-blue-600 [&>div]:to-purple-600"
+        />
+
         
         <h1 className="text-4xl font-bold text-white mb-3">
             {formData?.title || "Defina o escopo"}

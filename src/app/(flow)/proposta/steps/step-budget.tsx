@@ -45,7 +45,11 @@ export default function StepBudget({ onNext, onBack }: StepBudgetProps) {
             </div>
             <span className="text-white/80 text-sm font-medium">80%</span>
         </div>
-        <Progress value={80} className="h-2 bg-white/5 mb-6" indicatorClassName="bg-blue-500" />
+        <Progress
+            value={80}
+            className="h-2 bg-white/5 mb-6 [&>div]:bg-blue-500"
+        />
+
         <p className="text-white/60 text-lg max-w-2xl">
              Defina o escopo do seu projeto. Essas informações nos ajudam a dimensionar a equipe e a tecnologia ideal.
         </p>

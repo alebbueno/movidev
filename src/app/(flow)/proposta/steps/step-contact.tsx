@@ -43,7 +43,11 @@ export default function StepContact({ onNext, onBack }: StepContactProps) {
           </div>
           <span className="text-xl font-bold text-white">100%</span>
         </div>
-        <Progress value={95} className="h-2 bg-zinc-800" indicatorClassName="bg-green-500" />
+        <Progress
+        value={95}
+        className="h-2 bg-zinc-800 [&>div]:bg-green-500"
+        />
+
       </div>
 
       {/* Grid de Conteúdo */}

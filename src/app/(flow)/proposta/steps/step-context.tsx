@@ -67,7 +67,11 @@ export default function StepContext({ onNext }: StepContextProps) {
           </div>
           <span className="text-2xl font-bold text-white/80">25%</span>
         </div>
-        <Progress value={25} className="h-2 bg-white/5" indicatorClassName="bg-blue-500" />
+        <Progress
+          value={25}
+          className="h-2 bg-white/5 [&>div]:bg-blue-500"
+        />
+
         <p className="text-white/60 text-lg">
             Essas informações calibram nossa IA para fazer as perguntas técnicas corretas nas próximas etapas.
         </p>
