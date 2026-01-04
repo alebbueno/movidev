@@ -73,7 +73,7 @@ export function EditUserModal({ user }: EditUserModalProps) {
                     <Settings2 className="h-4 w-4" />
                 </Button>
             </DialogTrigger>
-            <DialogContent className="sm:max-w-[425px]">
+            <DialogContent className="sm:max-w-106.25">
                 <form onSubmit={handleUpdate}>
                     <DialogHeader>
                         <DialogTitle className="font-montserrat font-bold">Editar Usuário</DialogTitle>

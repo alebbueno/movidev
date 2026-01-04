@@ -15,17 +15,15 @@ import { inviteUserAction } from '@/app/actions/invite'
 
 export function InviteUserModal() {
     const [open, setOpen] = useState(false)
-    const [step, setStep] = useState<'form' | 'success'>('form') // Controla a visualização
+    const [step, setStep] = useState<'form' | 'success'>('form')
     const [loading, setLoading] = useState(false)
     const [errorMessage, setErrorMessage] = useState<string | null>(null)
     
-    // Dados do formulário
     const [email, setEmail] = useState('')
     const [role, setRole] = useState('colaborador')
     
     const router = useRouter()
 
-    // Reseta o estado quando o modal fecha ou reinicia
     const resetModal = () => {
         setEmail('')
         setRole('colaborador')
@@ -36,7 +34,6 @@ export function InviteUserModal() {
     const handleOpenChange = (isOpen: boolean) => {
         setOpen(isOpen)
         if (!isOpen) {
-            // Pequeno delay para resetar apenas depois que a animação de fechar acabar
             setTimeout(() => resetModal(), 300) 
         }
     }
@@ -47,14 +44,17 @@ export function InviteUserModal() {
         setErrorMessage(null)
 
         try {
-            const result = await inviteUserAction(email, role)
+            // AJUSTE: Passando os dados como um objeto único conforme a nova assinatura da Action
+            const result = await inviteUserAction({ 
+                email, 
+                role 
+            })
 
             if (result.error) {
                 setErrorMessage(result.error)
                 return
             }
 
-            // Sucesso: Muda para a tela de confirmação e atualiza dados no fundo
             setStep('success')
             router.refresh()
 
@@ -74,9 +74,8 @@ export function InviteUserModal() {
                     Convidar Usuário
                 </Button>
             </DialogTrigger>
-            <DialogContent className="sm:max-w-[425px]">
+            <DialogContent className="sm:max-w-106.25">
                 
-                {/* ESTADO 1: FORMULÁRIO */}
                 {step === 'form' && (
                     <form onSubmit={handleInvite}>
                         <DialogHeader>
@@ -87,7 +86,6 @@ export function InviteUserModal() {
                         </DialogHeader>
                         
                         <div className="grid gap-4 py-4">
-                            {/* Exibição de Erro Inline */}
                             {errorMessage && (
                                 <div className="flex items-center gap-2 rounded-md bg-red-50 p-3 text-sm text-red-600 border border-red-100">
                                     <AlertCircle className="h-4 w-4 shrink-0" />
@@ -134,10 +132,8 @@ export function InviteUserModal() {
                     </form>
                 )}
 
-                {/* ESTADO 2: SUCESSO (ANIMADO) */}
                 {step === 'success' && (
                     <div className="flex flex-col items-center justify-center py-6 text-center animate-in fade-in-50 zoom-in-95 duration-300">
-                        {/* Ícone Animado */}
                         <div className="relative mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-green-100">
                             <div className="absolute inset-0 rounded-full bg-green-200 animate-ping opacity-75"></div>
                             <div className="relative rounded-full bg-green-100 p-4">
@@ -146,7 +142,7 @@ export function InviteUserModal() {
                         </div>
 
                         <h3 className="mb-2 font-montserrat text-xl font-bold text-foreground">Convite Enviado!</h3>
-                        <p className="mb-6 text-sm text-muted-foreground max-w-[280px]">
+                        <p className="mb-6 text-sm text-muted-foreground max-w-70">
                             Enviamos um e-mail para <strong>{email}</strong> com as instruções de acesso.
                         </p>
 
