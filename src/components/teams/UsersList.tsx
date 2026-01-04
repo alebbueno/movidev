@@ -14,7 +14,7 @@ import { format } from 'date-fns'
 import { ptBR } from 'date-fns/locale'
 import { Mail, Calendar, RefreshCw, Clock, Loader2, CheckCircle2 } from 'lucide-react'
 import { EditUserModal } from '@/components/users/EditUserModal'
-import { resendInviteAction } from '@/app/actions/resend-invite'
+// import { resendInviteAction } from '@/app/actions/resend-invite'
 import { toast } from 'sonner' // <--- Importante: Importando o Toast da Sonner
 
 export interface UnifiedUser {
@@ -61,31 +61,31 @@ export function UsersList({ data }: UsersListProps) {
     }
 
     // --- FUNÇÃO DE REENVIO ATUALIZADA COM TOAST ---
-    const handleResend = async (email: string) => {
-        setResendingEmail(email)
-        try {
-            const result = await resendInviteAction(email)
+    // const handleResend = async (email: string) => {
+    //     setResendingEmail(email)
+    //     try {
+    //         const result = await resendInviteAction(email)
             
-            if (result.error) {
-                toast.error("Erro ao reenviar", {
-                    description: result.error
-                })
-            } else {
-                toast.success("Convite reenviado!", {
-                    description: `Um lembrete foi enviado para ${email}.`,
-                    icon: <CheckCircle2 className="h-4 w-4 text-green-600" />,
-                    duration: 4000,
-                })
-            }
-        } catch (error) {
-            console.error(error)
-            toast.error("Erro inesperado", {
-                description: "Não foi possível conectar ao servidor."
-            })
-        } finally {
-            setResendingEmail(null)
-        }
-    }
+    //         if (result.error) {
+    //             toast.error("Erro ao reenviar", {
+    //                 description: result.error
+    //             })
+    //         } else {
+    //             toast.success("Convite reenviado!", {
+    //                 description: `Um lembrete foi enviado para ${email}.`,
+    //                 icon: <CheckCircle2 className="h-4 w-4 text-green-600" />,
+    //                 duration: 4000,
+    //             })
+    //         }
+    //     } catch (error) {
+    //         console.error(error)
+    //         toast.error("Erro inesperado", {
+    //             description: "Não foi possível conectar ao servidor."
+    //         })
+    //     } finally {
+    //         setResendingEmail(null)
+    //     }
+    // }
     // ----------------------------------------------
 
     return (
@@ -99,8 +99,8 @@ export function UsersList({ data }: UsersListProps) {
                         </CardDescription>
                     </div>
                     
-                    <Tabs value={filter} onValueChange={(v) => setFilter(v as 'active' | 'pending')} className="w-full sm:w-auto">
-                        <TabsList className="grid w-full grid-cols-2 sm:w-[300px]">
+                    <Tabs value={filter} onValueChange={(v: string) => setFilter(v as 'active' | 'pending')} className="w-full sm:w-auto">
+                        <TabsList className="grid w-full grid-cols-2 sm:w-75">
                             <TabsTrigger value="active">
                                 Ativos <span className="ml-2 text-[10px] opacity-60">({activeCount})</span>
                             </TabsTrigger>
@@ -209,7 +209,7 @@ export function UsersList({ data }: UsersListProps) {
                                     </TableCell>
 
                                     <TableCell className="text-right pr-6">
-                                        {item.type === 'invite' ? (
+                                        {/* {item.type === 'invite' ? (
                                             <Button 
                                                 variant="ghost" 
                                                 size="sm" 
@@ -225,8 +225,8 @@ export function UsersList({ data }: UsersListProps) {
                                                 Reenviar
                                             </Button>
                                         ) : (
-                                            <EditUserModal user={item as any} />
-                                        )}
+                                        )} */}
+                                        <EditUserModal user={item as any} />
                                     </TableCell>
                                 </TableRow>
                             ))
