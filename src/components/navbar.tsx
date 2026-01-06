@@ -21,7 +21,7 @@ export function Navbar() {
     { name: "Serviços", href: "#services" },
     { name: "Sobre", href: "#about" },
     { name: "Contato", href: "#contact" },
-    { name: "Blog", href: "/blog" },
+    { name: "Blog", href: "https://blog.movidev.com.br/"},
   ]
 
   return (
@@ -41,7 +41,11 @@ export function Navbar() {
             "glass bg-black/40"
           )}
         >
-          <Link href="/" className="text-2xl font-bold tracking-tighter relative z-50">
+          <Link
+            href="/"
+            className="text-2xl font-bold tracking-tighter relative z-50"
+            style={{ fontFamily: "var(--font-batangas)" }}
+          >
             movidev<span className="text-blue-400">.</span>
           </Link>
 

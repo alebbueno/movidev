@@ -1,14 +1,14 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-"use client";
+"use client"
 
-import { useState } from "react";
-import { Loader2 } from "lucide-react"; // Importar Loader
-import StepContext from "./steps/step-context";
-import StepDynamicForm from "./steps/step-dynamic-form"; // O componente visual "Burro"
-import StepSummary from "./steps/step-summary";
-import StepBudget from "./steps/step-budget";
-import StepFinalForm from "./steps/step-final-form";
-import StepSuccess from "./steps/step-success";
+import { useState } from "react"
+import { Loader2 } from "lucide-react" // Importar Loader
+import StepContext from "./steps/step-context"
+import StepDynamicForm from "./steps/step-dynamic-form" // O componente visual "Burro"
+import StepSummary from "./steps/step-summary"
+import StepBudget from "./steps/step-budget"
+import StepFinalForm from "./steps/step-final-form"
+import StepSuccess from "./steps/step-success"
 
 export default function PropostaPage() {
   const [currentStep, setCurrentStep] = useState(1);

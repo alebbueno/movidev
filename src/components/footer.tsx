@@ -8,7 +8,11 @@ export function Footer() {
       <div className="container mx-auto px-6 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-20">
           <div>
-            <Link href="/" className="text-2xl font-bold tracking-tighter mb-6 block">
+            <Link
+              href="/"
+              className="text-2xl font-bold tracking-tighter mb-6 block"
+              style={{ fontFamily: "var(--font-batangas)" }}
+            >
               movidev<span className="text-blue-400">.</span>
             </Link>
             <p className="text-white/50 leading-relaxed">
