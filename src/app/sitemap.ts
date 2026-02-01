@@ -1,24 +1,19 @@
-import type { MetadataRoute } from "next"
-
-const baseUrl = "https://movidev.com.br"
+import { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const now = new Date()
-
   return [
     {
-      url: `${baseUrl}/`,
-      lastModified: now,
-      changeFrequency: "monthly",
-      priority: 1,
+      url: "https://www.movidev.com.br",
+      lastModified: new Date(),
     },
     {
-      url: `${baseUrl}/proposta`,
-      lastModified: now,
-      changeFrequency: "monthly",
-      priority: 0.9,
+      url: "https://www.movidev.com.br/websites",
     },
-  ]
+    {
+      url: "https://www.movidev.com.br/sistemas",
+    },
+    {
+      url: "https://www.movidev.com.br/automacao",
+    },
+  ];
 }
-
-

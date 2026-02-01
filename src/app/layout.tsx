@@ -26,59 +26,30 @@ const siteDescription =
   "Criamos soluções digitais e automações com IA para empresas que querem tirar ideias do papel, ganhar eficiência e lançar produtos com velocidade e qualidade."
 
 export const metadata: Metadata = {
-  metadataBase: new URL(siteUrl),
   title: {
-    default: siteTitle,
-    template: "%s | movidev",
+    default: "Movidev | Soluções digitais sob medida",
+    template: "%s | Movidev",
   },
-  description: siteDescription,
-  applicationName: siteName,
+  description:
+    "Desenvolvemos websites, sistemas sob medida e automações com IA para empresas que querem organizar processos, ganhar eficiência e escalar com tecnologia.",
   keywords: [
-    "desenvolvimento de software",
-    "inteligência artificial",
-    "IA",
-    "produtos digitais",
-    "automação",
-    "SaaS",
-    "aplicativo web",
+    "soluções digitais",
+    "desenvolvimento de sistemas",
+    "automação de processos",
+    "criação de sites profissionais",
+    "empresa de tecnologia",
   ],
-  authors: [{ name: "movidev" }],
+  authors: [{ name: "Movidev" }],
+  creator: "Movidev",
+  metadataBase: new URL("https://www.movidev.com.br"),
   openGraph: {
     type: "website",
-    url: siteUrl,
-    title: siteTitle,
-    siteName,
-    description: siteDescription,
     locale: "pt_BR",
-    images: [
-      {
-        url: "/icon-light-32x32.png",
-        width: 1200,
-        height: 630,
-        alt: "movidev - produtos digitais com IA",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: siteTitle,
-    description: siteDescription,
-    images: ["/icon-light-32x32.png"],
-  },
-  icons: {
-    icon: [
-      { url: "/movidev.ico" },
-      { url: "/icon-light-32x32.png", type: "image/png", sizes: "32x32" },
-      { url: "/icon-dark-32x32.png", type: "image/png", sizes: "32x32" },
-    ],
-    apple: [{ url: "/apple-icon.png", type: "image/png" }],
-  },
-  alternates: {
-    canonical: "/",
-  },
-  robots: {
-    index: true,
-    follow: true,
+    url: "https://www.movidev.com.br",
+    siteName: "Movidev",
+    title: "Movidev | Soluções digitais sob medida",
+    description:
+      "Websites, sistemas e automações com foco em performance, organização e crescimento empresarial.",
   },
 }
 
