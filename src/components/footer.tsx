@@ -1,4 +1,5 @@
 import Link from "next/link"
+import { Instagram, Linkedin, Github } from "lucide-react"
 
 export function Footer() {
   return (
@@ -48,28 +49,29 @@ export function Footer() {
 
           <div>
             <h4 className="font-semibold mb-6">Redes Sociais</h4>
-            <ul className="space-y-4 text-white/60">
-              <li>
-                <Link href="#" className="hover:text-white transition-colors">
-                  Instagram
-                </Link>
-              </li>
-              <li>
-                <Link href="#" className="hover:text-white transition-colors">
-                  LinkedIn
-                </Link>
-              </li>
-              <li>
-                <Link href="#" className="hover:text-white transition-colors">
-                  GitHub
-                </Link>
-              </li>
-              <li>
-                <Link href="#" className="hover:text-white transition-colors">
-                  Behance
-                </Link>
-              </li>
-            </ul>
+            <div className="flex gap-4">
+              <Link
+                href="https://www.instagram.com/a.movidev/"
+                target="_blank"
+                className="p-3 rounded-xl bg-white/5 border border-white/10 hover:bg-blue-500 hover:border-blue-500 hover:text-white text-white/60 transition-all duration-300 group"
+              >
+                <Instagram className="w-5 h-5" />
+              </Link>
+              <Link
+                href="https://www.linkedin.com/company/movidev-ia/"
+                target="_blank"
+                className="p-3 rounded-xl bg-white/5 border border-white/10 hover:bg-blue-500 hover:border-blue-500 hover:text-white text-white/60 transition-all duration-300 group"
+              >
+                <Linkedin className="w-5 h-5" />
+              </Link>
+              <Link
+                href="https://github.com/movidev-hub"
+                target="_blank"
+                className="p-3 rounded-xl bg-white/5 border border-white/10 hover:bg-blue-500 hover:border-blue-500 hover:text-white text-white/60 transition-all duration-300 group"
+              >
+                <Github className="w-5 h-5" />
+              </Link>
+            </div>
           </div>
 
           <div>

@@ -2,8 +2,10 @@ import Link from "next/link"
 import { Navbar } from "@/components/navbar"
 import { Hero } from "@/components/hero"
 import { Services } from "@/components/services"
+import { StrategicOffers } from "@/components/strategic-offers"
 import { Work } from "@/components/work"
 import { Footer } from "@/components/footer"
+import { CtaSection } from "@/components/cta-section"
 
 export default function Home() {
   return (
@@ -11,29 +13,9 @@ export default function Home() {
       <Navbar />
       <Hero />
       <Services />
+      <StrategicOffers />
       <Work />
-
-      <section id="contact" className="py-32 relative">
-        <div className="container mx-auto px-6 text-center relative z-10">
-          <h2 className="text-5xl md:text-7xl font-bold mb-8 tracking-tight">
-            Pronto para inovar <br />
-            <span className="text-gradient">com tecnologia?</span>
-          </h2>
-          <p className="text-xl text-white/60 mb-12 max-w-2xl mx-auto">
-            Vamos colaborar para construir algo extraordinário. Sua visão, nossa expertise em IA e desenvolvimento.
-          </p>
-          <Link
-            href="/proposta"
-            className="px-10 py-5 bg-white text-black rounded-full font-bold text-xl hover:scale-105 transition-transform shadow-[0_0_40px_-10px_rgba(255,255,255,0.3)] inline-flex items-center justify-center"
-          >
-            Iniciar Projeto
-          </Link>
-        </div>
-
-        {/* Background Gradient for CTA */}
-        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full h-[500px] bg-gradient-to-t from-blue-900/20 to-transparent pointer-events-none" />
-      </section>
-
+      <CtaSection />
       <Footer />
     </main>
   )

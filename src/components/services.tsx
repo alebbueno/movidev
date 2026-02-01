@@ -1,55 +1,73 @@
 "use client"
 
-import { GlassCard } from "@/components/ui/glass-card"
 import { motion } from "framer-motion"
-import { Code2, Bot, Smartphone, Globe } from "lucide-react"
+import { Code2, Bot, Smartphone, Globe, ArrowRight } from "lucide-react"
+import { cn } from "@/lib/utils"
 
 const services = [
   {
-    icon: <Bot className="w-8 h-8 text-blue-400" />,
+    icon: Bot,
     title: "Automação com IA",
+    subtitle: "Elimine tarefas manuais e ganhe eficiência operacional",
     description:
-      "Soluções inteligentes que automatizam processos e aumentam a eficiência do seu negócio usando IA de ponta.",
+      "Automatizamos processos repetitivos e fluxos de atendimento com agentes inteligentes que operam 24/7, reduzindo custos e aumentando produtividade.",
+    cta: "Saiba como automatizar",
   },
   {
-    icon: <Code2 className="w-8 h-8 text-purple-400" />,
+    icon: Code2,
     title: "Desenvolvimento de Sistemas",
+    subtitle: "Sistemas feitos para a realidade do seu negócio",
     description:
-      "Sistemas robustos e escaláveis, desenvolvidos sob medida para atender as necessidades específicas da sua empresa.",
+      "Criamos plataformas sob medida, painéis administrativos e sistemas SaaS para centralizar informações, organizar processos e dar escala à operação.",
+    cta: "Ver soluções em sistemas",
   },
   {
-    icon: <Globe className="w-8 h-8 text-indigo-400" />,
-    title: "Websites & E-commerce",
+    icon: Globe,
+    title: "Websites & Landing Pages",
+    subtitle: "Websites pensados para gerar oportunidades reais",
     description:
-      "Sites modernos e responsivos que convertem visitantes em clientes. Performance e experiência em primeiro lugar.",
+      "Sites de alta performance focados em posicionamento de marca, velocidade, SEO e conversão de visitantes em leads qualificados.",
+    cta: "Quero um site que venda",
   },
   {
-    icon: <Smartphone className="w-8 h-8 text-pink-400" />,
+    icon: Smartphone,
     title: "Aplicativos Mobile",
+    subtitle: "Aplicativos com experiência premium e foco no usuário",
     description:
-      "Apps nativos e híbridos para iOS e Android. Interfaces intuitivas e funcionalidades que engajam usuários.",
+      "Desenvolvemos apps nativos para iOS e Android com performance, usabilidade e design moderno, preparados para crescer junto com o produto.",
+    cta: "Conhecer apps mobile",
   },
 ]
 
 export function Services() {
   return (
-    <section id="services" className="py-32 relative">
-      <div className="container mx-auto px-6">
-        <div className="mb-20">
+    <section id="services" className="py-24 relative bg-black">
+      {/* Background decoration */}
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-900/10 blur-[120px] rounded-full pointer-events-none" />
+
+      <div className="container mx-auto px-6 relative z-10 max-w-6xl">
+        <div className="mb-16 md:mb-24">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="flex items-center gap-3 mb-6"
+          >
+            <div className="h-px w-8 bg-blue-500/50" />
+            <span className="text-sm font-medium text-blue-400 uppercase tracking-widest">
+              Nossa Expertise
+            </span>
+          </motion.div>
+
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-4xl md:text-6xl font-bold mb-6"
+            transition={{ delay: 0.1 }}
+            className="text-3xl md:text-5xl font-bold tracking-tight max-w-3xl"
           >
-            Nossa Expertise
+            Tecnologia sob medida para <span className="text-gradient-blue">organizar, vender e escalar</span> seu negócio
           </motion.h2>
-          <motion.div
-            initial={{ opacity: 0, width: 0 }}
-            whileInView={{ opacity: 1, width: "100px" }}
-            viewport={{ once: true }}
-            className="h-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full"
-          />
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -60,19 +78,28 @@ export function Services() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
+              className="group relative p-8 rounded-3xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.04] hover:border-blue-500/30 transition-all duration-300 flex flex-col"
             >
-              <GlassCard className="h-full flex flex-col justify-between group">
-                <div>
-                  <div className="mb-6 p-4 rounded-2xl bg-white/5 w-fit group-hover:bg-white/10 transition-colors">
-                    {service.icon}
-                  </div>
-                  <h3 className="text-2xl font-semibold mb-4">{service.title}</h3>
-                  <p className="text-white/60 leading-relaxed">{service.description}</p>
-                </div>
-                <div className="mt-8 flex items-center gap-2 text-sm font-medium text-white/40 group-hover:text-white transition-colors">
-                  Saiba mais <div className="w-4 h-[1px] bg-current transition-all group-hover:w-8" />
-                </div>
-              </GlassCard>
+              <div className="mb-6 inline-flex p-3 rounded-xl bg-blue-500/10 group-hover:bg-blue-500/20 transition-colors self-start">
+                <service.icon className="w-6 h-6 text-blue-400 group-hover:text-blue-300 transition-colors" />
+              </div>
+
+              <h3 className="text-xl font-bold mb-2 text-white group-hover:text-blue-100 transition-colors">
+                {service.title}
+              </h3>
+
+              <p className="text-sm font-medium text-blue-400/90 mb-4">
+                {service.subtitle}
+              </p>
+
+              <p className="text-muted-foreground leading-relaxed mb-8 group-hover:text-white/70 transition-colors">
+                {service.description}
+              </p>
+
+              <div className="mt-auto flex items-center gap-2 text-sm font-bold text-white group-hover:text-blue-400 transition-colors">
+                <span>{service.cta}</span>
+                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+              </div>
             </motion.div>
           ))}
         </div>

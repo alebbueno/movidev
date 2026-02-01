@@ -1,84 +1,184 @@
 "use client"
 
+import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
-import { ArrowRight } from "lucide-react"
+import { ArrowRight, Zap, Layers, Boxes } from "lucide-react"
+import Link from "next/link"
+
+const phrases = [
+  [
+    { text: "empresas que querem ", highlight: false },
+    { text: "vender mais", highlight: false },
+    { text: ".", highlight: false },
+  ],
+  [
+    { text: "empresas que precisam ", highlight: false },
+    { text: "organizar processos", highlight: false },
+    { text: ".", highlight: false },
+  ],
+  [
+    { text: "negócios que querem ", highlight: false },
+    { text: "escalar com eficiência", highlight: false },
+    { text: ".", highlight: false },
+  ],
+  [
+    { text: "operações que precisam de ", highlight: false },
+    { text: "automação", highlight: false },
+    { text: ".", highlight: false },
+  ],
+]
 
 export function Hero() {
+  const [index, setIndex] = useState(0)
+  const [subIndex, setSubIndex] = useState(0)
+  const [reverse, setReverse] = useState(false)
+  const [blink, setBlink] = useState(true)
+
+  // Calculate total length of current phrase
+  const currentPhraseSegments = phrases[index]
+  const totalLength = currentPhraseSegments.reduce((acc, seg) => acc + seg.text.length, 0)
+
+  // Typewriter effect logic
+  useEffect(() => {
+    if (subIndex === totalLength + 1 && !reverse) {
+      const timeout = setTimeout(() => {
+        setReverse(true)
+      }, 2000)
+      return () => clearTimeout(timeout)
+    }
+
+    if (subIndex === 0 && reverse) {
+      setReverse(false)
+      setIndex((prev) => (prev + 1) % phrases.length)
+      return
+    }
+
+    const timeout = setTimeout(() => {
+      setSubIndex((prev) => prev + (reverse ? -1 : 1))
+    }, reverse ? 30 : 50)
+
+    return () => clearTimeout(timeout)
+  }, [subIndex, index, reverse, totalLength])
+
+  useEffect(() => {
+    const timeout2 = setInterval(() => {
+      setBlink((prev) => !prev)
+    }, 500)
+    return () => clearInterval(timeout2)
+  }, [])
+
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
-      {/* Background Liquid Elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] bg-blue-600/20 rounded-full blur-[120px] animate-blob mix-blend-screen" />
-        <div className="absolute top-[20%] right-[-10%] w-[40vw] h-[40vw] bg-purple-600/20 rounded-full blur-[120px] animate-blob animation-delay-2000 mix-blend-screen" />
-        <div className="absolute bottom-[-10%] left-[20%] w-[45vw] h-[45vw] bg-indigo-600/20 rounded-full blur-[120px] animate-blob animation-delay-4000 mix-blend-screen" />
+    <section className="relative min-h-[90vh] flex items-center overflow-hidden bg-black pb-20 pt-32">
+      {/* Background Subtle Elements */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-[-20%] right-[-10%] w-[50vw] h-[50vw] bg-blue-600/10 rounded-full blur-[150px] mix-blend-screen" />
+        <div className="absolute bottom-[-10%] left-[-10%] w-[40vw] h-[40vw] bg-blue-900/5 rounded-full blur-[150px] mix-blend-screen" />
+        {/* Grid Pattern */}
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:64px_64px] [mask-image:radial-gradient(ellipse_at_center,black_40%,transparent_100%)]" />
       </div>
 
-      <div className="container mx-auto px-6 relative z-10 text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-        >
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass mb-8">
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
+      <div className="container mx-auto px-6 relative z-10 max-w-6xl">
+        <div className="max-w-4xl">
+          {/* Fixed Top Headline */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="inline-flex items-center gap-2 mb-8"
+          >
+            <div className="h-px w-8 bg-blue-500/50" />
+            <span className="text-sm font-medium text-blue-400 uppercase tracking-widest">
+              Transformação Digital
             </span>
-            <span className="text-xs font-medium text-white/80 uppercase tracking-wider">
-              Disponível para novos projetos
-            </span>
+          </motion.div>
+
+          {/* Animated Headline */}
+          <div className="min-h-[120px] sm:min-h-[160px] lg:min-h-[200px] mb-6">
+            <h1 className="text-2xl sm:text-3xl lg:text-5xl font-bold text-white leading-[1.1] tracking-tight">
+              Criamos <span className="text-gradient-blue">tecnologia</span> para
+              <br />
+              {currentPhraseSegments.map((segment, i) => {
+                // Determine start index of this segment in the total phrase
+                let start = 0
+                for (let j = 0; j < i; j++) start += currentPhraseSegments[j].text.length
+
+                // Determine how much of this segment is visible
+                const visibleLen = Math.max(0, Math.min(segment.text.length, subIndex - start))
+
+                return (
+                  <span key={i} className="text-white">
+                    {segment.text.substring(0, visibleLen)}
+                  </span>
+                )
+              })}
+              <span className={`${blink ? "opacity-100" : "opacity-0"} text-blue-400 ml-1`}>|</span>
+            </h1>
           </div>
-        </motion.div>
 
-        <motion.h1
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-          className="text-4xl md:text-7xl lg:text-9xl font-bold tracking-tighter mb-8 text-gradient"
-        >
-          Inovação
-          <br />
-          Digital
-        </motion.h1>
+          {/* Subtitle */}
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="text-lg sm:text-xl text-muted-foreground max-w-2xl leading-relaxed mb-10"
+          >
+            Desenvolvemos websites, sistemas internos e automações para empresas que querem organizar processos,
+            ganhar eficiência e crescer com tecnologia — sem soluções genéricas.
+          </motion.p>
 
-        <motion.p
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
-          className="text-lg md:text-xl text-white/60 max-w-2xl mx-auto mb-12 leading-relaxed"
-        >
-          Transformamos ideias em soluções digitais inteligentes. Automação com IA, desenvolvimento de sistemas e
-          aplicativos de alta performance.
-        </motion.p>
+          {/* CTAs */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="flex flex-col sm:flex-row items-start gap-4 mb-16"
+          >
+            <Link
+              href="https://wa.me/5511999999999" // Replace with actual number
+              target="_blank"
+              className="group relative flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 bg-gradient-to-r from-blue-400 to-blue-600 text-black hover:opacity-90 shadow-[0_0_20px_-5px_rgba(81,162,255,0.4)]"
+            >
+              <span>Quero falar com um especialista</span>
+              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            </Link>
 
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-4"
-        >
-          <button className="group relative px-8 py-4 bg-white text-black rounded-full font-semibold text-lg overflow-hidden transition-all hover:scale-105">
-            <span className="relative z-10 flex items-center gap-2">
-              Ver Nossos Projetos <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </span>
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-100 to-white opacity-0 group-hover:opacity-100 transition-opacity" />
-          </button>
-          <button className="px-8 py-4 glass rounded-full font-semibold text-lg text-white hover:bg-white/10 transition-all hover:scale-105">
-            Fale Conosco
-          </button>
-        </motion.div>
+            <button
+              onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })}
+              className="px-8 py-4 rounded-xl font-medium text-white border border-white/10 hover:bg-white/5 transition-colors flex items-center gap-2 group"
+            >
+              Ver soluções
+              <ArrowRight className="w-4 h-4 text-white/50 group-hover:text-white transition-colors" />
+            </button>
+          </motion.div>
+
+          {/* Trust Indicators */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            className="flex flex-wrap gap-x-8 gap-y-4 text-sm text-white/60 font-medium border-t border-white/5 pt-8"
+          >
+            <div className="flex items-center gap-3">
+              <div className="p-1.5 rounded-full bg-blue-500/10">
+                <Boxes className="w-4 h-4 text-blue-400" />
+              </div>
+              Projetos sob medida
+            </div>
+            <div className="flex items-center gap-3">
+              <div className="p-1.5 rounded-full bg-blue-500/10">
+                <Zap className="w-4 h-4 text-blue-400" />
+              </div>
+              Foco em performance
+            </div>
+            <div className="flex items-center gap-3">
+              <div className="p-1.5 rounded-full bg-blue-500/10">
+                <Layers className="w-4 h-4 text-blue-400" />
+              </div>
+              Tecnologia escalável
+            </div>
+          </motion.div>
+        </div>
       </div>
-
-      {/* Scroll Indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.5, duration: 1 }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
-      >
-        <span className="text-xs text-white/40 uppercase tracking-widest">Scroll</span>
-        <div className="w-[1px] h-12 bg-gradient-to-b from-white/0 via-white/40 to-white/0" />
-      </motion.div>
     </section>
   )
 }
