@@ -19,7 +19,7 @@ export function CtaSection() {
 
                 <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-10">
                     <Link
-                        href="https://wa.me/5511999999999"
+                        href="https://wa.me/5511965671180"
                         target="_blank"
                         className="group relative inline-flex items-center justify-center px-8 py-3.5 text-base font-bold text-black transition-all duration-300 bg-gradient-to-r from-blue-400 to-blue-600 rounded-xl hover:opacity-90 shadow-[0_0_20px_-5px_rgba(81,162,255,0.4)]"
                     >

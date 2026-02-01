@@ -22,7 +22,7 @@ const offers = [
     ],
     ctaPrimary: "Falar no WhatsApp",
     ctaSecondary: "Ver detalhes",
-    href: "https://wa.me/5511999999999?text=Olá, tenho interesse no Website Profissional",
+    href: "https://wa.me/5511965671180?text=Olá, tenho interesse no Website Profissional",
     highlight: true,
   },
   {
@@ -44,7 +44,7 @@ const offers = [
     ],
     ctaPrimary: "Agendar diagnóstico",
     ctaSecondary: "Ver detalhes",
-    href: "https://wa.me/5511999999999?text=Olá, tenho interesse no Sistema Sob Medida",
+    href: "https://wa.me/5511965671180?text=Olá, tenho interesse no Sistema Sob Medida",
     highlight: false,
   },
   {
@@ -66,7 +66,7 @@ const offers = [
     ],
     ctaPrimary: "Quero automatizar",
     ctaSecondary: "Ver detalhes",
-    href: "https://wa.me/5511999999999?text=Olá, tenho interesse em Automação e Integrações",
+    href: "https://wa.me/5511965671180?text=Olá, tenho interesse em Automação e Integrações",
     highlight: false,
   },
 ]

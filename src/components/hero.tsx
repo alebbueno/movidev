@@ -134,7 +134,7 @@ export function Hero() {
             className="flex flex-col sm:flex-row items-start gap-4 mb-16"
           >
             <Link
-              href="https://wa.me/5511999999999" // Replace with actual number
+              href="https://wa.me/5511965671180"
               target="_blank"
               className="group relative flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-bold text-lg transition-all duration-300 bg-gradient-to-r from-blue-400 to-blue-600 text-black hover:opacity-90 shadow-[0_0_20px_-5px_rgba(81,162,255,0.4)]"
             >

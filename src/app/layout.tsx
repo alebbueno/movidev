@@ -1,6 +1,7 @@
 import type { Metadata } from "next"
 import { Geist, Geist_Mono } from "next/font/google"
 import localFont from "next/font/local"
+import Script from "next/script"
 import "./globals.css"
 
 const geistSans = Geist({
@@ -62,6 +63,11 @@ export default function RootLayout({
     <html lang="pt-BR" className="scroll-smooth" style={{ scrollPaddingTop: "100px" }}>
       <body className={`${geistSans.variable} ${geistMono.variable} ${batangas.variable} antialiased`}>
         {children}
+        <Script
+          src="https://www.formulando.app/whatsapp-widget.js"
+          data-workspace="198b8265-dcd7-4283-8bdc-aba7dbf8ef44"
+          strategy="lazyOnload"
+        />
       </body>
     </html>
   )
