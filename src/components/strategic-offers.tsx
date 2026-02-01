@@ -73,7 +73,7 @@ const offers = [
 
 export function StrategicOffers() {
   return (
-    <section className="py-24 relative overflow-hidden bg-black" id="ofertas">
+    <section className="py-16 md:py-24 relative overflow-hidden bg-black" id="ofertas">
       {/* Background decoration */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[1200px] h-[600px] bg-blue-600/5 blur-[100px] rounded-full pointer-events-none" />
 
@@ -155,7 +155,7 @@ export function StrategicOffers() {
               </div>
 
               {/* CTAs */}
-              <div className="mt-auto grid grid-cols-[1fr,auto] gap-3">
+              <div className="mt-auto flex flex-col sm:grid sm:grid-cols-[1fr,auto] gap-3">
                 <Link
                   href={offer.href}
                   target="_blank"

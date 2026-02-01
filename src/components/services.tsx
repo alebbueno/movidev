@@ -41,7 +41,7 @@ const services = [
 
 export function Services() {
   return (
-    <section id="services" className="py-24 relative bg-black">
+    <section id="services" className="py-16 md:py-24 relative bg-black">
       {/* Background decoration */}
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-900/10 blur-[120px] rounded-full pointer-events-none" />
 

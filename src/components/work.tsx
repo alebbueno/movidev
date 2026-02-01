@@ -50,7 +50,7 @@ const projects = [
 
 export function Work() {
   return (
-    <section id="work" className="py-24 relative overflow-hidden bg-black">
+    <section id="work" className="py-16 md:py-24 relative overflow-hidden bg-black">
       <div className="container mx-auto px-6 relative z-10 max-w-6xl">
         <div className="text-center mb-20 space-y-4">
           <motion.h2

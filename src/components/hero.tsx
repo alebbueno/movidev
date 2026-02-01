@@ -68,7 +68,7 @@ export function Hero() {
   }, [])
 
   return (
-    <section className="relative min-h-[90vh] flex items-center overflow-hidden bg-black pb-20 pt-32">
+    <section className="relative min-h-[90vh] flex items-center overflow-hidden bg-black pb-16 pt-24 md:pb-20 md:pt-32">
       {/* Background Subtle Elements */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-[-20%] right-[-10%] w-[50vw] h-[50vw] bg-blue-600/10 rounded-full blur-[150px] mix-blend-screen" />

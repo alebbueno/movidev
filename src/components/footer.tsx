@@ -3,7 +3,7 @@ import { Instagram, Linkedin, Github } from "lucide-react"
 
 export function Footer() {
   return (
-    <footer className="relative pt-32 pb-12 overflow-hidden">
+    <footer className="relative pt-20 pb-12 md:pt-32 overflow-hidden">
       <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent" />
 
       <div className="container mx-auto px-6 relative z-10">
