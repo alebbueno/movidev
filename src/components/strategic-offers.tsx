@@ -23,6 +23,7 @@ const offers = [
     ctaPrimary: "Falar no WhatsApp",
     ctaSecondary: "Ver detalhes",
     href: "https://wa.me/5511965671180?text=Olá, tenho interesse no Website Profissional",
+    detailsHref: "/websites",
     highlight: true,
   },
   {
@@ -45,6 +46,7 @@ const offers = [
     ctaPrimary: "Agendar diagnóstico",
     ctaSecondary: "Ver detalhes",
     href: "https://wa.me/5511965671180?text=Olá, tenho interesse no Sistema Sob Medida",
+    detailsHref: "/sistemas",
     highlight: false,
   },
   {
@@ -67,6 +69,7 @@ const offers = [
     ctaPrimary: "Quero automatizar",
     ctaSecondary: "Ver detalhes",
     href: "https://wa.me/5511965671180?text=Olá, tenho interesse em Automação e Integrações",
+    detailsHref: "/automacao",
     highlight: false,
   },
 ]
@@ -170,10 +173,13 @@ export function StrategicOffers() {
                   <ArrowRight className="w-4 h-4" />
                 </Link>
 
-                <button className="px-5 py-3 rounded-xl border border-white/10 text-sm font-medium text-white hover:bg-white/5 transition-colors group/btn flex items-center gap-2">
+                <Link
+                  href={offer.detailsHref}
+                  className="px-5 py-3 rounded-xl border border-white/10 text-sm font-medium text-white hover:bg-white/5 transition-colors group/btn flex items-center gap-2 justify-center"
+                >
                   {offer.ctaSecondary}
                   <ArrowRight className="w-4 h-4 text-muted-foreground group-hover/btn:text-white transition-colors" />
-                </button>
+                </Link>
               </div>
             </div>
           ))}

@@ -136,4 +136,8 @@
   .animation-delay-4000 {
     animation-delay: 4s;
   }
+
+  .font-batangas {
+    font-family: var(--font-batangas);
+  }
 }
